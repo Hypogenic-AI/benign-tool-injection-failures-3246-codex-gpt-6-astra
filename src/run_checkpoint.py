@@ -1,6 +1,8 @@
 """Run one locally served checkpoint through Inspect, clean first then paired arms."""
 import argparse,json,os,sys,time
 from pathlib import Path
+os.environ['XDG_DATA_HOME']=str(Path('.cache/data').resolve())
+os.environ['XDG_CACHE_HOME']=str(Path('.cache').resolve())
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from inspect_ai import eval
 from evals.benign_tool_injection import benign_tool_injection
