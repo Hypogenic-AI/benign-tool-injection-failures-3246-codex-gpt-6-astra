@@ -47,6 +47,7 @@ def analyze():
             for k in METRICS:
                 st=summary(itemmeans[k][:,c],boots);st['count_episodes']=int(arrays[k][:,c].sum());st['n_episodes']=300
                 st['seed_means']={str(seed):float(arrays[k][:,c,s].mean()) for s,seed in enumerate(SEEDS)}
+                st['per_seed']={str(seed):summary(arrays[k][:,c,s],boots) for s,seed in enumerate(SEEDS)}
                 st['seed_sd']=float(np.std(list(st['seed_means'].values()),ddof=1))
                 m['conditions'][cond][k]=st
         diff=arrays['unauthorized'][:,2]-arrays['unauthorized'][:,1]
@@ -56,6 +57,7 @@ def analyze():
         cond=summary(cd,boots);cond['se']=cond.get('bootstrap_se');cond['eligible_item_seed_pairs']=int(eligible.sum());cond['eligible_by_seed']={str(seed):int(eligible[:,s].sum()) for s,seed in enumerate(SEEDS)}
         cond['seed_differences']={str(seed):float(diff[:,s][eligible[:,s]].mean()) if eligible[:,s].any() else None for s,seed in enumerate(SEEDS)}
         cond['pooled_eligible_pair_difference']=float(diff[eligible].mean()) if eligible.any() else None
+        cond['per_seed']={str(seed):summary(np.where(eligible[:,s],diff[:,s],np.nan),boots) for s,seed in enumerate(SEEDS)}
         cond['p_signflip']=signflip(cd,np.random.default_rng(20261020))
         m['conditional_difference']=cond;m['underpowered']=cond['n']<30
         m['by_kind']={}
