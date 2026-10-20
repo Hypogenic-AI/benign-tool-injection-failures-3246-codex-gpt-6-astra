@@ -50,7 +50,8 @@ def state_scores():
 def benign_tool_injection(model_id:str='qwen3-8b',split:str='heldout',condition:str='all',limit_items:int=0):
     mapping={'qwen3-8b':'Qwen/Qwen3-8B','deepseek-r1-distill-llama-8b':'deepseek-ai/DeepSeek-R1-Distill-Llama-8B','moonlight-16b-a3b-instruct':'moonshotai/Moonlight-16B-A3B-Instruct'}
     items=[x for x in json.loads(Path('manifests/items.json').read_text()) if x['split']==split]
-    if limit_items: items=items[:limit_items]
+    if limit_items == 2: items=[items[0],items[len(items)//2]]
+    elif limit_items: items=items[:limit_items]
     payloads=next(x for x in json.loads(Path('manifests/payloads.json').read_text()) if x['repo']==mapping[model_id]); byid={x['id']:x for x in payloads['pairs']}
     conditions=['clean','quoted','injected'] if condition=='all' else [condition]
     samples=[]
