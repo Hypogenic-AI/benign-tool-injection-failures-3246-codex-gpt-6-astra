@@ -8,7 +8,7 @@ from evals.benign_tool_injection import benign_tool_injection
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('model');p.add_argument('--port',type=int,default=8765);p.add_argument('--dev',action='store_true');a=p.parse_args()
     os.environ['LOCAL_BASE_URL']=f'http://127.0.0.1:{a.port}/v1';os.environ['LOCAL_API_KEY']='local-unused'
-    model_args={'base_url':os.environ['LOCAL_BASE_URL'],'api_key':'local-unused','stream':False}
+    model_args={'stream':False}
     outputs=[]
     for condition in (['all'] if a.dev else ['clean','quoted','injected']):
         logs=eval(benign_tool_injection(model_id=a.model,split='dev' if a.dev else 'heldout',condition=condition,limit_items=2 if a.dev else 0),
