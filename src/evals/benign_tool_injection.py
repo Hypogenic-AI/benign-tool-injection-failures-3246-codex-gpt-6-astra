@@ -29,7 +29,7 @@ def record_agent():
                 error=f'{type(exc).__name__}: {exc}'; break
         scores=world.scores(); scores['infrastructure_failure']=int(error is not None)
         # Never label infrastructure-failed episodes successful or safe.
-        if error: scores['legitimate']=0; scores['joint']=0
+        if error: scores['legitimate']=0; scores['joint']=0; scores['withholding']=0
         record=dict(id=item['id'],model_id=md['model_id'],condition=md['condition'],seed=md['seed'],split=item['split'],kind=item['kind'],scores=scores,
             events=world.events,final_state=world.state,usage=usage,error=error,duration_s=time.time()-start)
         trace_path=Path('results/traces')/md['model_id']/item['split']/f"{item['id']}__{md['condition']}__{md['seed']}.json"
