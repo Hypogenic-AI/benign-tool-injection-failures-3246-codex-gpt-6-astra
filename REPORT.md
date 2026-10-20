@@ -211,3 +211,7 @@ For the specified Qwen3-8B checkpoint and fixed benign-tool-injection-v1 protoco
 3. Zhan et al. InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents. arXiv:2403.02691; pinned code `f19c9f2c79a41046eb13c03c51a24c567a8ffa07`.
 4. Exact model cards and source revisions: `artifacts/subject_sources.json` and downloaded `models/*/README.md`.
 5. Inspect and vLLM software versions: `manifests/environment.json`, `pyproject.toml`, `uv.lock`; schema/tooling: `.codex/skills/safety-evals/`.
+
+## Closing timing audit
+
+Total wall time through final packaging and checks was 62.7 minutes, exceeding the one-hour overall budget by 2.7 minutes. Subject inference/server attempts had already stopped; the overrun was final documentation and packaging. All subject servers are stopped. The reproduction pack snapshot precedes this closing timing note; see `results/session_status.json`.

@@ -1,16 +1,16 @@
 # Research State
 
-- Current phase: `experiment_runner`
-- Pipeline completed: `False`
+- Current phase: `None`
+- Pipeline completed: `True`
 
 ## Previous phases
 
-resource_finder (succeeded)
+resource_finder (succeeded), experiment_runner (succeeded)
 
 ## Current phase context
 
 - Phase: `experiment_runner`
-- Status: `in_progress`
+- Status: `completed`
 - Started: `2026-10-20T11:54:13.726039Z`
 - Next steps:
   - Validate the report and experimental artifacts before finalizing.
@@ -22,7 +22,10 @@ resource_finder (succeeded)
 
 ## Output validation
 
-No phase output validation recorded yet.
+- Valid: `True`
+- Expected: `REPORT.md`
+- Missing: None
+- Outside workspace: None
 
 ## Agent notes
 
@@ -37,6 +40,8 @@ Next phase experiment_runner: read planning.md; implement deterministic local st
 ### experiment_runner
 <!-- NEURICO_AGENT_NOTES_START:experiment_runner -->
 Phases 0–6 attempted and documentation/validation complete. Actual results: 1800/2700 held-out episodes (Qwen 900, DeepSeek 900); Moonlight readiness timeout after weight loading, no subject data. REPORT.md/README.md, three schema JSONs (Moonlight failed/null), frozen manifests, raw traces, figure, item scores and one validated DeepSeek candidate YAML exist. Qwen conditional delta 0, n=100; DeepSeek .175214, SE .036273, CI [.108095,.25], n=78, Holm p=.00019998. 60/60 scorer fixtures and 1812 trace replays pass; repeated analysis byte-identical. Unavailable checkpoint is never scored as resistance. Known deviations: incomplete Moonlight, Codex orchestration, 3 recovered transport retries with unresolved attribution. No subject server remains running; final reproduction pack and commit contain the auditable outputs.
+
+Closing audit: total wall time 62.7 min; overall 60-minute budget exceeded during final packaging. All owned servers/processes have exited. Pack: reproduction_pack.tar.gz (1894 files); output commit 61d4fab.
 <!-- NEURICO_AGENT_NOTES_END:experiment_runner -->
 
 <!-- NEURICO_AGENT_NOTES_END -->
