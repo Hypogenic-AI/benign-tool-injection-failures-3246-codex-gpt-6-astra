@@ -17,7 +17,8 @@ def fetch(entry):
         return dict(repo=entry['repo'],status='failed',error=str(e),seconds=time.time()-start)
 if __name__=='__main__':
     sources=json.loads(Path('artifacts/subject_sources.json').read_text())
-    with ThreadPoolExecutor(max_workers=3) as pool:
-        out=list(pool.map(fetch,sources))
+    # Separate snapshot operations avoid tqdm's process-global lock race.
+    out=[fetch(source) for source in sources]
     Path('artifacts/download_results.json').write_text(json.dumps(out,indent=2))
     print(json.dumps(out,indent=2))
+    if any(row['status']!='success' for row in out): raise SystemExit(1)

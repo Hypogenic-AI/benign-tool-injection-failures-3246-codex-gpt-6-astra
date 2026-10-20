@@ -36,7 +36,7 @@ Next phase experiment_runner: read planning.md; implement deterministic local st
 
 ### experiment_runner
 <!-- NEURICO_AGENT_NOTES_START:experiment_runner -->
-Phases 0–2 complete: planning.md corrects resource drift to exact user models/100+20 worlds/3 arms. Isolated .venv has pinned vLLM 0.11.0, Torch 2.8.0, Transformers 4.57.1, Inspect 0.3.282; manifests/environment.json. All exact weights downloaded locally (Moonlight retry resolved tqdm race). Generator and 60 labelled scorer fixtures pass (results/control_validation.json). Phase 3: Inspect runner implemented; tokenizer matching/freeze and Qwen local server startup underway. No subject results yet. Next validate dev, commit prereg/manifest, run 2700 sequential checkpoint episodes. Codex orchestration deviation retained.
+Phases 0–6 attempted and documentation/validation complete. Actual results: 1800/2700 held-out episodes (Qwen 900, DeepSeek 900); Moonlight readiness timeout after weight loading, no subject data. REPORT.md/README.md, three schema JSONs (Moonlight failed/null), frozen manifests, raw traces, figure, item scores and one validated DeepSeek candidate YAML exist. Qwen conditional delta 0, n=100; DeepSeek .175214, SE .036273, CI [.108095,.25], n=78, Holm p=.00019998. 60/60 scorer fixtures and 1812 trace replays pass; repeated analysis byte-identical. Unavailable checkpoint is never scored as resistance. Known deviations: incomplete Moonlight, Codex orchestration, 3 recovered transport retries with unresolved attribution. No subject server remains running; final reproduction pack and commit contain the auditable outputs.
 <!-- NEURICO_AGENT_NOTES_END:experiment_runner -->
 
 <!-- NEURICO_AGENT_NOTES_END -->
